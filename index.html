@@ -3,35 +3,36 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <title>My Farm — V1</title>
+  <meta name="theme-color" content="#6eaa45">
+  <title>My Farm — V1.1</title>
   <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--ink:#24321f;--panel:#fffaf0;--green:#4d8b3b}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(#8fd4ff 0 38%,#9bd86f 38% 100%);color:var(--ink);overflow-x:hidden}
+:root{--ink:#26351f;--paper:#fffaf0;--green:#4f963d;--dark:#355f2c;--gold:#f4bd45;--soil:#7a4828}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:linear-gradient(#8fd8ff 0 310px,#9bd66d 310px 100%);min-height:100vh}
 button{font:inherit;border:0;cursor:pointer}
-.top{position:sticky;top:0;z-index:20;padding:10px;display:flex;gap:8px;align-items:center;justify-content:space-between;background:rgba(255,250,240,.94);backdrop-filter:blur(10px);box-shadow:0 3px 14px #0002}
-.brand{font-weight:900;font-size:20px;white-space:nowrap}.stats{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.stat{background:#fff;border-radius:999px;padding:7px 10px;font-weight:800;box-shadow:0 2px 8px #0002;font-size:13px}
-.hero{max-width:1050px;margin:auto;padding:18px 14px 8px;text-align:center}
-.hero h1{margin:0;font-size:clamp(28px,7vw,54px);text-shadow:0 3px #fff}.hero p{margin:4px 0 12px;font-weight:650}
-.controls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.pill{padding:10px 14px;border-radius:14px;background:#fffaf0;font-weight:800;box-shadow:0 3px 10px #0002}
-.game{max-width:1050px;margin:auto;padding:8px 12px 28px}
-.farm{position:relative;min-height:530px;border:7px solid #6f4829;border-radius:28px;overflow:hidden;background:linear-gradient(#a9e27e 0 68%,#77bd50 68%);box-shadow:0 12px 30px #0003}
-.sun{position:absolute;right:35px;top:25px;font-size:62px;animation:float 4s ease-in-out infinite}
-.cloud{position:absolute;font-size:55px;opacity:.85;animation:cloud 24s linear infinite}.c1{top:40px;left:-100px}.c2{top:110px;left:35%;animation-duration:30s}
-@keyframes cloud{to{transform:translateX(1200px)}}@keyframes float{50%{transform:translateY(-7px)}}
-.decor{position:absolute;font-size:38px;z-index:1}.tree1{left:18px;top:110px}.tree2{right:22px;top:160px}.barn{position:absolute;right:18px;bottom:72px;font-size:85px;z-index:2}.house{position:absolute;left:18px;bottom:74px;font-size:82px;z-index:2}
-.plots{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);width:min(78%,700px);display:grid;grid-template-columns:repeat(4,1fr);gap:10px;z-index:3}
-.plot{aspect-ratio:1.15;border:4px solid #704423;border-radius:17px;background:linear-gradient(135deg,#a86638,#754322);box-shadow:inset 0 7px 0 #b97544,0 5px 8px #0003;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;touch-action:manipulation}
-.plot.empty::after{content:"＋";color:#ffe8a7;font-size:38px;font-weight:900;opacity:.75}.plot button{position:absolute;inset:0;background:transparent;color:white;font-size:12px;font-weight:900;text-shadow:0 2px 3px #000;z-index:4}
-.crop{font-size:clamp(28px,6vw,46px);animation:grow .45s ease-out}.water{position:absolute;inset:0;background:#5eb9e955;pointer-events:none;animation:water .5s ease-out}
-@keyframes grow{from{transform:scale(.3) translateY(20px);opacity:0}to{transform:scale(1);opacity:1}}@keyframes water{from{opacity:0}30%{opacity:1}to{opacity:0}}
-.bottom{position:absolute;left:10px;right:10px;bottom:10px;background:#fffaf0ee;border-radius:18px;padding:9px;display:flex;gap:7px;justify-content:center;flex-wrap:wrap;z-index:10;backdrop-filter:blur(8px)}
-.cropBtn{padding:9px 12px;border-radius:13px;background:#fff;border:2px solid #ddd;font-weight:850;box-shadow:0 2px 6px #0002}.cropBtn.active{border-color:#4d8b3b;background:#eaf7df}
-.info{max-width:1050px;margin:12px auto;display:grid;grid-template-columns:1.2fr .8fr;gap:12px}.card{background:var(--panel);border-radius:20px;padding:16px;box-shadow:0 5px 18px #0002}.card h2{margin:0 0 8px}.task{display:flex;justify-content:space-between;gap:10px;padding:9px;border-bottom:1px solid #eadfca}.task:last-child{border:0}.small{font-size:13px;color:#5f6858}
-.modal{position:fixed;inset:0;background:#18201899;display:none;align-items:center;justify-content:center;padding:18px;z-index:50}.modal.show{display:flex}.modalbox{background:#fffaf0;border-radius:24px;padding:22px;max-width:430px;width:100%;text-align:center;box-shadow:0 20px 60px #0005}.modalbox h2{margin-top:0}.big{font-size:64px}.close{background:#4d8b3b;color:#fff;padding:11px 18px;border-radius:13px;font-weight:900}
-.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);background:#24321f;color:white;padding:11px 16px;border-radius:999px;font-weight:800;opacity:0;pointer-events:none;z-index:70;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:700px){.brand{font-size:17px}.stat{font-size:11px;padding:6px 8px}.farm{min-height:590px}.plots{top:48%;width:91%;grid-template-columns:repeat(2,1fr);gap:9px}.plot{aspect-ratio:1.25}.info{grid-template-columns:1fr}.house{font-size:64px}.barn{font-size:68px}.decor{font-size:32px}}
+.top{position:sticky;top:0;z-index:30;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fffaf0ee;backdrop-filter:blur(12px);box-shadow:0 3px 15px #0002}
+.brand{font-size:20px;font-weight:950;white-space:nowrap}.stats{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.stat{background:#fff;border-radius:999px;padding:6px 9px;font-weight:900;font-size:13px;box-shadow:0 2px 7px #0002}
+.hero{max-width:1100px;margin:auto;text-align:center;padding:20px 12px 12px}.hero h1{font-size:clamp(30px,8vw,58px);margin:0;text-shadow:0 3px #fff}.hero p{margin:3px 0 12px;font-weight:700}
+.btn{padding:10px 14px;border-radius:14px;background:#fffaf0;font-weight:900;box-shadow:0 3px 10px #0002;transition:.15s}.btn:active,.cropbtn:active{transform:scale(.95)}
+.controls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.game{max-width:1100px;margin:auto;padding:8px 12px 35px}.farm{position:relative;min-height:600px;border:7px solid #704724;border-radius:28px;overflow:hidden;background:linear-gradient(#a8e47c 0 70%,#7abd50 70%);box-shadow:0 14px 35px #0003}
+.sun{position:absolute;right:32px;top:18px;font-size:65px;animation:float 4s ease-in-out infinite;filter:drop-shadow(0 5px 4px #0002)}
+.cloud{position:absolute;font-size:56px;opacity:.85;animation:cloud 28s linear infinite}.c1{left:-100px;top:45px}.c2{left:30%;top:105px;animation-duration:34s}
+@keyframes cloud{to{transform:translateX(1250px)}}@keyframes float{50%{transform:translateY(-8px)}}@keyframes pop{0%{transform:scale(.4);opacity:0}80%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+.decor{position:absolute;z-index:1;font-size:40px;animation:float 5s ease-in-out infinite}.tree1{left:14px;top:125px}.tree2{right:20px;top:175px}.house{position:absolute;left:15px;bottom:80px;font-size:82px;z-index:2}.barn{position:absolute;right:13px;bottom:80px;font-size:82px;z-index:2}
+.plots{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:min(82%,760px);display:grid;grid-template-columns:repeat(4,1fr);gap:10px;z-index:3}
+.plot{aspect-ratio:1.2;border:4px solid #6d3e21;border-radius:17px;background:linear-gradient(135deg,#a96338,#70401f);box-shadow:inset 0 7px 0 #bb7547,0 5px 9px #0003;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;animation:pop .25s ease-out}
+.plot.locked{background:linear-gradient(135deg,#8b927d,#5e6656);border-color:#555c4e}.plot.empty::after{content:"＋";color:#ffe5a0;font-size:38px;font-weight:950;opacity:.8}.plot button{position:absolute;inset:0;background:transparent;color:white;font-weight:950;font-size:12px;text-shadow:0 2px 3px #000;z-index:4}
+.crop{font-size:clamp(28px,6vw,49px);animation:grow .5s ease-out}.seed{font-size:31px;opacity:.9}.ready{animation:bob 1s ease-in-out infinite}
+@keyframes grow{from{transform:scale(.25) translateY(15px);opacity:0}to{transform:scale(1);opacity:1}}@keyframes bob{50%{transform:translateY(-5px) scale(1.05)}}
+.progress{position:absolute;left:0;bottom:0;height:7px;background:#fff;z-index:3}.waterfx{position:absolute;inset:0;background:#60bce866;animation:water .55s ease-out;z-index:2;pointer-events:none}@keyframes water{from{opacity:0}30%{opacity:1}to{opacity:0}}
+.lockmsg{font-size:30px}.lockprice{font-size:11px;color:#fff;font-weight:900;position:absolute;bottom:8px;z-index:4}
+.bottom{position:absolute;left:9px;right:9px;bottom:9px;background:#fffaf0ee;border-radius:18px;padding:8px;display:flex;gap:7px;justify-content:center;flex-wrap:wrap;z-index:10;backdrop-filter:blur(9px)}
+.cropbtn{padding:8px 11px;border-radius:13px;background:#fff;border:2px solid #ddd;font-weight:900;box-shadow:0 2px 6px #0002}.cropbtn.active{border-color:#4f963d;background:#e8f6df}
+.panelgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}.card{background:var(--paper);border-radius:20px;padding:15px;box-shadow:0 5px 18px #0002}.card h2{margin:0 0 10px}.row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #eadfc9}.row:last-child{border:0}.small{font-size:12px;color:#68705f}.shopgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.shopitem{background:#fff;border:2px solid #eee0c9;border-radius:14px;padding:9px}.shopitem b{display:block}.shopitem button{margin-top:5px;width:100%;padding:7px;border-radius:10px;background:#4f963d;color:#fff;font-weight:900}.shopitem button:disabled{background:#aaa}
+.modal{position:fixed;inset:0;background:#17201699;display:none;align-items:center;justify-content:center;padding:15px;z-index:60}.modal.show{display:flex}.modalbox{background:var(--paper);width:min(480px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:20px;box-shadow:0 20px 65px #0006}.modalbox h2{margin-top:0}.close{padding:10px 17px;border-radius:12px;background:var(--green);color:#fff;font-weight:900}.reward{font-size:58px;text-align:center}.achievement{display:flex;gap:10px;align-items:center;padding:10px;border-radius:13px;background:#fff;margin:7px 0}.achievement.done{background:#e8f6df;border:2px solid #7db76b}.badge{font-size:28px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,25px);background:#26351f;color:#fff;padding:11px 16px;border-radius:999px;font-weight:900;opacity:0;pointer-events:none;z-index:100;transition:.25s;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.brand{font-size:17px}.stat{font-size:11px;padding:6px 7px}.farm{min-height:650px}.plots{top:47%;width:91%;grid-template-columns:repeat(2,1fr);gap:9px}.plot{aspect-ratio:1.25}.panelgrid{grid-template-columns:1fr}.house{font-size:64px}.barn{font-size:64px}.decor{font-size:33px}}
 </style>
  </head>
  <body>
@@ -39,22 +40,25 @@ button{font:inherit;border:0;cursor:pointer}
    <div class="brand">🌾 My Farm</div>
    <div class="stats">
     <div class="stat">
-     🪙 <span id="coins">100</span>
+     🪙 <span id="coins">150</span>
     </div>
     <div class="stat">
      ⭐ Lv.<span id="level">1</span>
     </div>
     <div class="stat">
-     🌾 <span id="xp">0</span> XP
+     XP <span id="xp">0</span>/<span id="need">50</span>
     </div>
    </div>
   </header>
   <section class="hero">
-   <h1>Welcome to My Farm! 🌱</h1>
-   <p>Plant • Grow • Harvest • Sell • Expand</p>
+   <h1>My Farm 🌱</h1>
+   <p>Build your little farm, grow crops and become a farming legend!</p>
    <div class="controls">
-    <button class="pill" onclick="openHelp()">❓ How to Play</button>
-    <button class="pill" onclick="newFarm()">🔄 New Farm</button>
+    <button class="btn" onclick="openShop()">🏪 Shop</button>
+    <button class="btn" onclick="dailyReward()">🎁 Daily Reward</button>
+    <button class="btn" onclick="showAchievements()">🏆 Achievements</button>
+    <button class="btn" onclick="openHelp()">❓ How to Play</button>
+    <button class="btn" onclick="newFarm()">🔄 Reset</button>
    </div>
   </section>
   <main class="game">
@@ -69,26 +73,52 @@ button{font:inherit;border:0;cursor:pointer}
     <div class="plots" id="plots"></div>
     <div class="bottom" id="cropBar"></div>
    </div>
-   <section class="info">
+   <section class="panelgrid">
     <div class="card">
-     <h2>📋 Farm Tasks</h2>
-     <div class="task">
-      <span>🌱 Plant your first crop</span><b id="taskPlant">0/1</b>
+     <h2>📋 Progress</h2>
+     <div class="row">
+      <span>🌱 Planted</span><b id="planted">0</b>
      </div>
-     <div class="task">
-      <span>💧 Water a crop</span><b id="taskWater">0/1</b>
+     <div class="row">
+      <span>🌾 Harvested</span><b id="harvested">0</b>
      </div>
-     <div class="task">
-      <span>🌾 Harvest 3 crops</span><b id="taskHarvest">0/3</b>
+     <div class="row">
+      <span>💧 Watered</span><b id="watered">0</b>
      </div>
-     <div class="small">Complete actions to earn XP and unlock levels.</div>
+     <div class="row">
+      <span>🌍 Land</span><b id="land">4/8</b>
+     </div>
     </div>
     <div class="card">
-     <h2>📦 Farm Basket</h2>
-     <p>🌾 Wheat: <b id="wheat">0</b></p>
-     <p>🥕 Carrot: <b id="carrot">0</b></p>
-     <p>🍅 Tomato: <b id="tomato">0</b></p>
-     <button class="pill" onclick="sellAll()">🏪 Sell Harvest — +🪙</button>
+     <h2>📦 Basket</h2>
+     <div class="row">
+      <span>🌾 Wheat</span><b id="wheat">0</b>
+     </div>
+     <div class="row">
+      <span>🥕 Carrot</span><b id="carrot">0</b>
+     </div>
+     <div class="row">
+      <span>🍅 Tomato</span><b id="tomato">0</b>
+     </div>
+     <div class="row">
+      <span>🌽 Corn</span><b id="corn">0</b>
+     </div>
+     <div class="row">
+      <span>🍓 Berry</span><b id="berry">0</b>
+     </div>
+     <button class="btn" style="width:100%;margin-top:8px" onclick="sellAll()">🏪 Sell Everything</button>
+    </div>
+    <div class="card">
+     <h2>⚡ Upgrades</h2>
+     <div class="row">
+      <span>💧 Watering</span>
+      <button class="btn" onclick="upgradeWater()">Level <b id="waterLevel">1</b> • 🪙<span id="waterCost">50</span></button>
+     </div>
+     <div class="row">
+      <span>📦 Storage</span>
+      <button class="btn" onclick="upgradeStorage()">Level <b id="storageLevel">1</b> • 🪙<span id="storageCost">75</span></button>
+     </div>
+     <div class="small">Upgrades make future farming easier.</div>
     </div>
    </section>
   </main>
@@ -97,34 +127,118 @@ button{font:inherit;border:0;cursor:pointer}
   </div>
   <div class="toast" id="toast"></div>
   <script>
-const crops={wheat:{name:"Wheat",emoji:"🌾",cost:5,sell:9,time:5000,xp:5},carrot:{name:"Carrot",emoji:"🥕",cost:8,sell:15,time:8000,xp:8},tomato:{name:"Tomato",emoji:"🍅",cost:12,sell:22,time:11000,xp:12}};
-let state=JSON.parse(localStorage.getItem("myFarmV1")||"null")||{coins:100,xp:0,level:1,selected:"wheat",basket:{wheat:0,carrot:0,tomato:0},tasks:{plant:0,water:0,harvest:0},plots:Array(8).fill(null)};
+const crops={
+wheat:{name:"Wheat",emoji:"🌾",cost:5,sell:9,time:5000,xp:5},
+carrot:{name:"Carrot",emoji:"🥕",cost:8,sell:15,time:8000,xp:8},
+tomato:{name:"Tomato",emoji:"🍅",cost:12,sell:22,time:11000,xp:12},
+corn:{name:"Corn",emoji:"🌽",cost:18,sell:34,time:15000,xp:17},
+berry:{name:"Berry",emoji:"🍓",cost:25,sell:48,time:19000,xp:22}
+};
+const achievements=[
+{id:"plant",title:"First Seed",desc:"Plant 1 crop",check:s=>s.stats.planted>=1,icon:"🌱",reward:15},
+{id:"harvest",title:"Little Farmer",desc:"Harvest 3 crops",check:s=>s.stats.harvested>=3,icon:"🌾",reward:25},
+{id:"rich",title:"Coin Collector",desc:"Reach 300 coins",check:s=>s.coins>=300,icon:"🪙",reward:40},
+{id:"level3",title:"Growing Strong",desc:"Reach level 3",check:s=>s.level>=3,icon:"⭐",reward:50},
+{id:"allcrops",title:"Crop Collector",desc:"Harvest every crop type",check:s=>Object.values(s.basket).every((v,i)=>v>=0)&&Object.keys(crops).every(k=>(s.stats.types||[]).includes(k)),icon:"🏆",reward:75}
+];
+let state=JSON.parse(localStorage.getItem("myFarmV11")||"null")||{
+coins:150,xp:0,level:1,selected:"wheat",waterLevel:1,storageLevel:1,lastReward:"",
+basket:{wheat:0,carrot:0,tomato:0,corn:0,berry:0},
+stats:{planted:0,harvested:0,watered:0,types:[]},achievements:[],plots:Array(8).fill(null)
+};
  
-function save(){localStorage.setItem("myFarmV1",JSON.stringify(state))}
-function toast(t){const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove("show"),1800)}
+function save(){localStorage.setItem("myFarmV11",JSON.stringify(state))}
+function toast(t){const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>x.classList.remove("show"),1900)}
+function today(){const d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
 function render(){
-document.getElementById("coins").textContent=state.coins;document.getElementById("xp").textContent=state.xp;document.getElementById("level").textContent=state.level;
-for(const k of Object.keys(crops))document.getElementById(k).textContent=state.basket[k];
-document.getElementById("taskPlant").textContent=Math.min(state.tasks.plant,1)+"/1";document.getElementById("taskWater").textContent=Math.min(state.tasks.water,1)+"/1";document.getElementById("taskHarvest").textContent=Math.min(state.tasks.harvest,3)+"/3";
-renderBar();renderPlots();save()}
-function renderBar(){const bar=document.getElementById("cropBar");bar.innerHTML="";Object.entries(crops).forEach(([k,c])=>{const b=document.createElement("button");b.className="cropBtn"+(state.selected===k?" active":"");b.innerHTML=`${c.emoji} ${c.name}<br><small>🪙${c.cost} • ${Math.round(c.time/1000)}s</small>`;b.onclick=()=>{state.selected=k;renderBar();toast(c.name+" selected")};bar.appendChild(b)})}
-function renderPlots(){const wrap=document.getElementById("plots");wrap.innerHTML="";state.plots.forEach((p,i)=>{
+document.getElementById("coins").textContent=state.coins;document.getElementById("xp").textContent=state.xp;document.getElementById("level").textContent=state.level;document.getElementById("need").textContent=state.level*50;
+document.getElementById("planted").textContent=state.stats.planted;document.getElementById("harvested").textContent=state.stats.harvested;document.getElementById("watered").textContent=state.stats.watered;
+document.getElementById("land").textContent=(state.plots.filter(p=>p!==false).length)+"/8";
+Object.keys(crops).forEach(k=>document.getElementById(k).textContent=state.basket[k]);
+document.getElementById("waterLevel").textContent=state.waterLevel;document.getElementById("storageLevel").textContent=state.storageLevel;
+document.getElementById("waterCost").textContent=50*state.waterLevel;document.getElementById("storageCost").textContent=75*state.storageLevel;
+renderBar();renderPlots();checkAchievements();save();
+}
+function renderBar(){
+const bar=document.getElementById("cropBar");bar.innerHTML="";
+Object.entries(crops).forEach(([k,c])=>{const b=document.createElement("button");b.className="cropbtn"+(state.selected===k?" active":"");b.innerHTML=`${c.emoji} ${c.name}<br><small>🪙${c.cost} • ${Math.ceil(c.time/1000)}s</small>`;b.onclick=()=>{state.selected=k;renderBar();toast(c.name+" selected")};bar.appendChild(b)})
+}
+function renderPlots(){
+const wrap=document.getElementById("plots");wrap.innerHTML="";
+state.plots.forEach((p,i)=>{
 const el=document.createElement("div");el.className="plot"+(!p?" empty":"");
-if(!p){const b=document.createElement("button");b.textContent="Plant "+crops[state.selected].emoji;b.onclick=()=>plant(i);el.appendChild(b)}
-else if(p.ready){el.innerHTML=`<div class="crop">${crops[p.type].emoji}</div>`;const b=document.createElement("button");b.textContent="🌾 HARVEST";b.onclick=()=>harvest(i);el.appendChild(b)}
-else{el.innerHTML=`<div class="crop">${p.watered?"💧":"🌱"}</div>`;const b=document.createElement("button");b.textContent=p.watered?"Growing…":"💧 WATER";b.onclick=()=>water(i);el.appendChild(b);
-const left=Math.max(0,p.time-(Date.now()-p.plantedAt));const prog=document.createElement("div");prog.style.cssText=`position:absolute;left:0;bottom:0;height:7px;background:#fff;width:${Math.min(100,(1-left/p.time)*100)}%;transition:width .5s`;el.appendChild(prog);setTimeout(()=>renderPlots(),600)}
-wrap.appendChild(el)})}
-function plant(i){if(state.plots[i])return;const c=crops[state.selected];if(state.coins<c.cost){toast("Not enough coins!");return}state.coins-=c.cost;state.plots[i]={type:state.selected,plantedAt:Date.now(),time:c.time,watered:false,ready:false};state.tasks.plant++;addXP(3);toast(c.emoji+" Planted!");render()}
-function water(i){const p=state.plots[i];if(!p||p.ready)return;if(p.watered){toast("Already watered 💧");return}p.watered=true;p.plantedAt=Math.max(Date.now(),p.plantedAt-1500);state.tasks.water++;addXP(3);toast("Watered! Growth boosted 💧");render()}
-function harvest(i){const p=state.plots[i];if(!p||!p.ready)return;const c=crops[p.type];state.basket[p.type]++;state.tasks.harvest++;addXP(c.xp);state.plots[i]=null;toast("Harvested "+c.name+"! +"+c.xp+" XP");render()}
-function addXP(n){state.xp+=n;const needed=state.level*50;if(state.xp>=needed){state.xp-=needed;state.level++;state.coins+=25;toast("🎉 Level Up! +25 coins")}}
-function sellAll(){let total=0,items=0;Object.entries(crops).forEach(([k,c])=>{total+=state.basket[k]*c.sell;items+=state.basket[k];state.basket[k]=0});if(!items){toast("Your basket is empty.");return}state.coins+=total;toast("🏪 Sold "+items+" items for 🪙"+total);render()}
-function openHelp(){document.getElementById("modalbox").innerHTML=`<div class="big">🌾</div><h2>How to Play</h2><p>1️⃣ Choose a crop.<br>2️⃣ Tap an empty plot to plant.<br>3️⃣ Water it to speed growth.<br>4️⃣ Wait for it to mature.<br>5️⃣ Harvest and sell your crops.</p><p><b>Tip:</b> Keep planting so your farm keeps producing coins and XP.</p><button class="close" onclick="closeModal()">Let's Farm!</button>`;document.getElementById("modal").classList.add("show")}
+if(p===false){el.className="plot locked";el.innerHTML=`<div class="lockmsg">🔒</div><div class="lockprice">Unlock for 🪙${100+i*75}</div>`;const b=document.createElement("button");b.onclick=()=>unlock(i);el.appendChild(b)}
+else if(!p){const b=document.createElement("button");b.textContent="Plant "+crops[state.selected].emoji;b.onclick=()=>plant(i);el.appendChild(b)}
+else if(p.ready){el.innerHTML=`<div class="crop ready">${crops[p.type].emoji}</div>`;const b=document.createElement("button");b.textContent="🌾 HARVEST";b.onclick=()=>harvest(i);el.appendChild(b)}
+else{el.innerHTML=`<div class="crop">${p.watered?"💧":"🌱"}</div>`;const b=document.createElement("button");b.textContent=p.watered?"Growing…":"💧 WATER";b.onclick=()=>water(i);el.appendChild(b);const left=Math.max(0,p.time-(Date.now()-p.plantedAt));const prog=document.createElement("div");prog.className="progress";prog.style.width=Math.min(100,(1-left/p.time)*100)+"%";el.appendChild(prog)}
+wrap.appendChild(el)
+})
+}
+function plant(i){
+if(state.plots[i]===false||state.plots[i])return;const c=crops[state.selected];
+if(state.coins<c.cost){toast("Not enough coins!");return}
+state.coins-=c.cost;state.plots[i]={type:state.selected,plantedAt:Date.now(),time:c.time,watered:false,ready:false};
+state.stats.planted++;if(!state.stats.types.includes(state.selected))state.stats.types.push(state.selected);addXP(3);toast(c.emoji+" Planted!");render()
+}
+function water(i){
+const p=state.plots[i];if(!p||p.ready)return;if(p.watered){toast("Already watered 💧");return}
+p.watered=true;p.plantedAt=Math.max(Date.now(),p.plantedAt-(1500*state.waterLevel));state.stats.watered++;addXP(3);
+const el=document.querySelectorAll(".plot")[i];if(el){const fx=document.createElement("div");fx.className="waterfx";el.appendChild(fx)}
+toast("Watered! Growth boosted 💧");render()
+}
+function harvest(i){
+const p=state.plots[i];if(!p||!p.ready)return;const c=crops[p.type];
+const maxStorage=20+(state.storageLevel-1)*10;if(totalBasket()>=maxStorage){toast("📦 Storage full! Upgrade storage.");return}
+state.basket[p.type]++;state.stats.harvested++;addXP(c.xp);state.plots[i]=null;toast("Harvested "+c.name+"! +"+c.xp+" XP");render()
+}
+function totalBasket(){return Object.values(state.basket).reduce((a,b)=>a+b,0)}
+function addXP(n){state.xp+=n;while(state.xp>=state.level*50){state.xp-=state.level*50;state.level++;state.coins+=25;toast("🎉 Level Up! +25 coins")}}
+function sellAll(){
+let total=0,items=0;Object.entries(crops).forEach(([k,c])=>{total+=state.basket[k]*c.sell;items+=state.basket[k];state.basket[k]=0});
+if(!items){toast("Your basket is empty.");return}state.coins+=total;toast("🏪 Sold "+items+" items for 🪙"+total);render()
+}
+function unlock(i){
+if(state.plots[i]!==false)return;const cost=100+i*75;if(state.coins<cost){toast("Need 🪙"+cost);return}
+state.coins-=cost;state.plots[i]=null;toast("🌍 New land unlocked!");render()
+}
+function upgradeWater(){
+const cost=50*state.waterLevel;if(state.coins<cost){toast("Need 🪙"+cost);return}
+state.coins-=cost;state.waterLevel++;toast("💧 Watering upgraded!");render()
+}
+function upgradeStorage(){
+const cost=75*state.storageLevel;if(state.coins<cost){toast("Need 🪙"+cost);return}
+state.coins-=cost;state.storageLevel++;toast("📦 Storage upgraded!");render()
+}
+function dailyReward(){
+if(state.lastReward===today()){toast("🎁 Today's reward already collected.");return}
+const reward=50+state.level*10;state.coins+=reward;state.lastReward=today();toast("🎁 Daily reward: +🪙"+reward);render()
+}
+function openShop(){
+let html=`<h2>🏪 Farm Shop</h2><p class="small">Buy seeds by selecting a crop below. Seeds are planted directly from the farm bar.</p><div class="shopgrid">`;
+Object.entries(crops).forEach(([k,c])=>{html+=`<div class="shopitem"><span style="font-size:30px">${c.emoji}</span><b>${c.name}</b><span>Sell: 🪙${c.sell}</span><button onclick="selectFromShop('${k}')">Select Seed 🪙${c.cost}</button></div>`});
+html+=`</div><hr><p>💧 Water upgrade: faster growth<br>📦 Storage upgrade: hold more harvest</p><button class="close" onclick="closeModal()">Close</button>`;
+showModal(html)
+}
+function selectFromShop(k){state.selected=k;closeModal();toast(crops[k].emoji+" "+crops[k].name+" selected");renderBar()}
+function showAchievements(){
+let html=`<h2>🏆 Achievements</h2>`;
+achievements.forEach(a=>{const done=state.achievements.includes(a.id);html+=`<div class="achievement ${done?"done":""}"><div class="badge">${a.icon}</div><div><b>${a.title} ${done?"✓":""}</b><br><span class="small">${a.desc} • Reward 🪙${a.reward}</span></div></div>`});
+html+=`<button class="close" onclick="closeModal()">Close</button>`;showModal(html)
+}
+function checkAchievements(){
+achievements.forEach(a=>{if(a.check(state)&&!state.achievements.includes(a.id)){state.achievements.push(a.id);state.coins+=a.reward;setTimeout(()=>toast("🏆 Achievement: "+a.title+" +🪙"+a.reward),100);}})
+}
+function openHelp(){showModal(`<div class="reward">🌾</div><h2>How to Play</h2><p>Choose a seed, tap an empty plot, water the crop, wait for it to grow, then harvest it.</p><p>Sell your harvest for coins. Use coins to unlock land and upgrade watering/storage. Collect your daily reward and achievements.</p><button class="close" onclick="closeModal()">Start Farming!</button>`)}
+function showModal(html){document.getElementById("modalbox").innerHTML=html;document.getElementById("modal").classList.add("show")}
 function closeModal(){document.getElementById("modal").classList.remove("show")}
-function newFarm(){if(!confirm("Start a new farm? Your current progress will be erased."))return;localStorage.removeItem("myFarmV1");location.reload()}
+function newFarm(){if(!confirm("Reset all V1.1 progress?"))return;localStorage.removeItem("myFarmV11");location.reload()}
 document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
-setInterval(()=>{let changed=false;state.plots.forEach(p=>{if(p&&!p.ready&&Date.now()-p.plantedAt>=p.time){p.ready=true;changed=true}});if(changed){toast("🌾 Crop ready to harvest!");render()}else renderPlots()},1000);
+ 
+if(!state.plots.some(p=>p===false)){state.plots=[null,null,null,null,false,false,false,false]}
+setInterval(()=>{
+let changed=false;state.plots.forEach(p=>{if(p&&!p.ready&&Date.now()-p.plantedAt>=p.time){p.ready=true;changed=true}});
+if(changed){toast("🌾 Crop ready to harvest!");render()}else renderPlots()
+},1000);
 render();
 </script>
  </body>
